@@ -4,8 +4,6 @@ development:
   database: blog_prueba_development
   pool: 5
   host: localhost
-  username: postgres
-  password: postgres
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -16,8 +14,6 @@ test:
   database: blog_prueba_test
   pool: 5
   host: localhost
-  username: postgres
-  password: postgres
 
 
 production:
@@ -26,5 +22,3 @@ production:
   database: blog_prueba_production
   pool: 5
   host: localhost
-  username: postgres
-  password: postgres

@@ -1,27 +1,58 @@
 <p id="notice"><%= notice %></p>
  
+<h2><%= @post.title %></h2>
+<div class = "container">
+  <%= markdown @post.content %>
+</div>
+
+<div id='fb-root'></div>
+    <script src='http://connect.facebook.net/en_US/all.js'></script>
+    <p><a onclick='postToFeed(); return false;'>Post to Feed</a></p>
+    <p id='msg'></p>
+
+    <script> 
+      FB.init({appId: "119011551592368", status: true, cookie: true});
+
+      function postToFeed() {
+
+        // calling the API ...
+        var obj = {
+          method: 'feed',
+          redirect_uri: '<%=post_url(@post)%>',
+          link: '<%=post_url(@post)%>',
+          picture: 'http://www.10puntos.com/wp-content/uploads/2011/07/blogger-logo.jpg',
+          name:   "<%= @post.title %>",
+          caption: "<%= @post.content %>",
+          description: 'Blog Koombea 2.0'
+        };
+
+        function callback(response) {
+          document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+        }
+
+        FB.ui(obj, callback);
+      }
+    
+    </script>
 <p>
-  <b>Title:</b>
-  <%= @post.title %>
+  <%= time_ago_in_words(@post.created_at) + " ago" %>
 </p>
+<div>
+  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
  
+ </div>
+  
 <p>
-  <b>Content:</b>
-  <%= @post.content %>
+  <h3>Comments</h3>
 </p>
 
-<p>
-  <b>Date:</b>
-  <%= @post.created_at.strftime("%d %b. %Y %H:%M") %>
-</p>
- 
-<h2>Comments</h2>
 <%= render @post.comments %>
  
-<h2>Add a comment:</h2>
+
 <%= render "comments/form" %>
  
 <br />
  
-<%= link_to 'Edit Post', edit_post_path(@post) %> |
-<%= link_to 'Back to Posts', posts_path %> |
+<%= link_to 'Back to Posts', posts_path %>

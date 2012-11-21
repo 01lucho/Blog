@@ -1,7 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :post
-  attr_accessible :alias, :comment
+  belongs_to :user
+  attr_accessible :alias, :comment, :user_id
 
-  validates :alias, :presence => true
   validates :comment, :presence => true
 end

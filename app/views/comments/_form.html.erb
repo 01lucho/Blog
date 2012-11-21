@@ -1,14 +1,5 @@
-<%= form_for([@post, @post.comments.build]) do |f| %>
-  <div class="field">
-    <%= f.label :alias %><br />
-    <%= f.text_field :alias %>
-  </div>
-  <div class="field">
-    <%= f.label :comment %><br />
-    <%= f.text_area :comment %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<%= simple_form_for([@post, @post.comments.build],html:{class: "form-horizontal"}) do |f| %>
+    <%= f.input :alias %>
+    <%= f.input :comment, :input_html => { :rows => 7}%>
+   <%= f.button :submit%>
 <% end %>
