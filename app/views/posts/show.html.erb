@@ -18,7 +18,7 @@
         // calling the API ...
         var obj = {
           method: 'feed',
-          redirect_uri: '<%=post_url(@post)%>',
+          redirect_uri: 'http://localhost:3000/',
           link: '<%=post_url(@post)%>',
           picture: 'http://www.10puntos.com/wp-content/uploads/2011/07/blogger-logo.jpg',
           name:   "<%= @post.title %>",
@@ -38,9 +38,8 @@
   <%= time_ago_in_words(@post.created_at) + " ago" %>
 </p>
 <div>
-  <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=post_url(@post)%>" data-related="<%=post_url(@post)%>" data-counturl="<%=post_url(@post)%>"data-hashtags="<%=post_url(@post)%>" data-via="<%=post_url(@post)%>" data-lang="en">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
  
  </div>
   
