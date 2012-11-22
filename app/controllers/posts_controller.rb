@@ -30,6 +30,7 @@ class PostsController < ApplicationController
   end
 
   def create
+
   @post = current_user.posts.new(params[:post])
 
     respond_to do |format|

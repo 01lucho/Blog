@@ -2,8 +2,12 @@
  
 <h2><%= @post.title %></h2>
 <div class = "container">
+  <%= image_tag @post.image.url if !@post.image_file_name.nil? %>
   <%= markdown @post.content %>
 </div>
+<p>
+  <%= time_ago_in_words(@post.created_at) + " ago" %>
+</p>
 
 <div id='fb-root'></div>
     <script src='http://connect.facebook.net/en_US/all.js'></script>
@@ -18,7 +22,7 @@
         // calling the API ...
         var obj = {
           method: 'feed',
-          redirect_uri: 'http://localhost:3000/',
+          redirect_uri: '<%=post_url(@post)%>',
           link: '<%=post_url(@post)%>',
           picture: 'http://www.10puntos.com/wp-content/uploads/2011/07/blogger-logo.jpg',
           name:   "<%= @post.title %>",
@@ -34,13 +38,9 @@
       }
     
     </script>
-<p>
-  <%= time_ago_in_words(@post.created_at) + " ago" %>
-</p>
 <div>
-<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%=post_url(@post)%>" data-related="<%=post_url(@post)%>" data-counturl="<%=post_url(@post)%>"data-hashtags="<%=post_url(@post)%>" data-via="<%=post_url(@post)%>" data-lang="en">Tweet</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
- 
+ <a href="https://twitter.com/share" class="twitter-share-button" data-text="Sigue este Post" data-lang="es">Twittear</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
  </div>
   
 <p>
@@ -48,10 +48,8 @@
 </p>
 
 <%= render @post.comments %>
- 
 
-<%= render "comments/form" %>
- 
 <br />
- 
+
+<%= render "comments/form" %> 
 <%= link_to 'Back to Posts', posts_path %>

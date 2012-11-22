@@ -4,7 +4,6 @@ Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-  config.mailer_sender = "please-change-me-at-config-initializers-devise@example.com"
   
   #config.omniauth :facebook, "APP_ID", "APP_SECRET",
   #    :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
@@ -19,7 +18,10 @@ Devise.setup do |config|
   require 'devise/orm/active_record'
   require "omniauth-facebook"
   
-  config.omniauth :facebook, "119011551592368", "10899b85dc9711b2f3203b6fd0dc5b99"
+  config.mailer_sender = "luis.basmar@gmail.com"
+  config.reconfirmable = false
+
+  config.omniauth :facebook, "119011551592368", "32c12ee1bac69466c2e7b96c4b1d2456"
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
   # just :email. You can configure it to use [:username, :subdomain], so for
@@ -101,7 +103,6 @@ Devise.setup do |config|
   # initial account confirmation) to be applied. Requires additional unconfirmed_email
   # db field (see migrations). Until confirmed new email is stored in
   # unconfirmed email column, and copied to email column on successful confirmation.
-  config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
   # config.confirmation_keys = [ :email ]
