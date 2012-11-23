@@ -1,11 +1,11 @@
-<div class ="comments">
-<p>
+<% unless comment.new_record? %>
+<div class ="comment">
   <b>Nick:</b>
   <%= comment.alias %> </b>
-</p>
-<p> 
   <b>Comment:</b>
   <%= comment.comment %>
-</p>
+  <% if user_signed_in? %>
+   <%= link_to "LIKE", new_like_path, id: "like", remote: true %>
+  <%end%>
 </div>
-
+<%end%>

@@ -4,8 +4,4 @@ class UserMailer < ActionMailer::Base
   def registration_confirmation(comment)
     mail(:to => comment.post.user.email, :subject => "Registered")
   end
-
-  def registration2_confirmation(comment)
-    mail(:to => comment.post.user.email, :subject => "Registered")
-  end
 end
