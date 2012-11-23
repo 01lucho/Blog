@@ -4,7 +4,8 @@ class Post < ActiveRecord::Base
 
   attr_accessible :content, :title, :user_id, :image
   has_attached_file :image
-  #                :url  => "/assets/posts/:id/:style/:basename.:extension",
-  #               :path => ":rails_root/public/assets/posts/:id/:style/:basename.:extension"
-
+ 
+  has_attached_file :image, :styles => { :small => "300x300>" }, :default_url => "/assets/images/default.gif"
+    
+  validates_attachment_size :image, :less_than => 5.megabytes
 end

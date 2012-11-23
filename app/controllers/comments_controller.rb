@@ -9,6 +9,9 @@ class CommentsController < ApplicationController
     else
       flash[:error] = "There were some errors creating your comment"
       redirect_to @post.errors
-    end    
+    end
+    respond_to do |format|
+      format.js
+    end   
   end
 end

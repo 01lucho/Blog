@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
-  
+   before_filter :authenticate_same_user, :only => [:destroy, :edit]
   def index
     @posts = Post.order('created_at DESC')
 
@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-
+    @comments = @post.comments.create(params[:comment])
     respond_to do |format|
       format.html 
     end
