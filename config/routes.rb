@@ -14,7 +14,9 @@ BlogPrueba::Application.routes.draw do
   resources :posts do
      resources :comments
   end
-
+  resources :comments do
+     resources :likes
+  end
   get 'home', to: 'posts#index', as: :home
   
   root :to => 'posts#index'
